@@ -1,4 +1,5 @@
 import {NOTE_FRAGMENT} from './fragment'
+import { GET_NOTES } from './queries'
 
 export const defaults = {
     notes:[
@@ -25,7 +26,7 @@ export const typeDefs = [
         note(id: Int!) :Note 
     }
     type Mutation{
-        createNote(title: String!, content: String!)
+        createNote(title: String!, content: String!):Note
         editNote(id:Int!, title: String!, content:String!)
     }
     type Note {
@@ -37,12 +38,30 @@ export const typeDefs = [
 ];
 export const resolvers = {
     //여기서 추출?
-    // Mutation:{},
     Query:{
         note: (_, variables, {cache}) => {
             const id = cache.config.dataIdFromObject({__typename:"Note", id:variables.id})
             const note = cache.readFragment({fragment:NOTE_FRAGMENT, id})
             return note;
+        }
+    },
+    Mutation:{
+        createNote: (_, variables, {cache}) => {
+            const {notes} = cache.readQuery({query:GET_NOTES});
+            const {title, content} = variables;
+            const newNote = {
+                __typename: "Note",
+                title,
+                content,
+                id: notes.length + 1
+            };
+            //새로운 note 작성 + array에 넣기
+            cache.writeData({
+                data: {
+                    notes:[newNote, ...notes]
+                }
+            });
+            return newNote;
         }
     }
 }; 
