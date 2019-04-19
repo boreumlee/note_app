@@ -1,5 +1,13 @@
 export const defaults = {
-    note:[]
+    notes:[
+        {
+            __typename:"Note",
+            id:1,
+            title: "First",
+            content: "notes"
+
+        }
+    ]
 };
 export const typeDefs = [
     //schema가 어떤 형태인지 보여줘
@@ -27,7 +35,12 @@ export const typeDefs = [
 ];
 export const resolvers = {
     //여기서 추출?
+    // Mutation:{},
     Query:{
-        notes: () => []
+        note: (_, variables, {cache}) => {
+            const id = cache.config.dataIdFromObject({__typename:"Note", id:variables.id})
+            console.log(id);
+            return null;
+        }
     }
 }; 
