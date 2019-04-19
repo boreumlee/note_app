@@ -5,4 +5,4 @@ import {ApolloProvider} from 'react-apollo';
 import client from './apollo';
 import GlobalStyle from "./globalStyles"; 
 
-ReactDOM.render(<ApolloProvider client={client}><App /></ApolloProvider>, document.getElementById('root'));
+ReactDOM.render(<ApolloProvider client={client}><GlobalStyle/><App /></ApolloProvider>, document.getElementById('root'));
