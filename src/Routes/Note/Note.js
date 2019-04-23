@@ -41,7 +41,7 @@ export default class Note extends React.Component{
                                 <Button>Edit</Button>
                             </Link>
                         </TitleComponent>
-                        <MarkdownRenderer markdown={data.note.content}/>
+                        <MarkdownRenderer markdown={data.note.content} className={"markdown"}/>
                     </Fragment>
                 ):null}
             </Query>

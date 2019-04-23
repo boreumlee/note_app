@@ -63,6 +63,8 @@ export default class Editor extends React.Component{
         } = event;
         this.setState({
             //여기서 name은 어디서 온거지?
+            //여기서 name은 TitleInput과 ContentInput에서 name을 정해줬음 그것들이 여기 들어가는것 
+            // ex. title: lalaal, content: djdjd
             [name]:value
         });
     };
