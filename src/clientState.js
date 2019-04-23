@@ -1,9 +1,9 @@
 import {NOTE_FRAGMENT} from './fragment';
 import { GET_NOTES } from './queries';
-import {saveNotes} from './offline'
+import {saveNotes,restoreNotes} from './offline'
 
 export const defaults = {
-    notes:[]
+    notes:restoreNotes()
 };
 export const typeDefs = [
     //schema가 어떤 형태인지 보여줘
