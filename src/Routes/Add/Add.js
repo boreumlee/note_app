@@ -29,6 +29,7 @@ export default class Add extends React.Component{
     _onSave = (title, content)=>{
         console.log(title,content);
         const {history:{push}} = this.props;
+        //props 안에 history 안에 push로 시작페이지로 갈수있음
         if(title !== '' && content !== ''){
             this.createNote({variables:{title,content}})
             push("/");
